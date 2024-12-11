@@ -6,9 +6,11 @@ class Ball(Turtle):
         self.setheading(30)
         self.color('white')
         self.penup()
+        self.move_speed = 10
+        self.sleep_speed =0.1
 
     def move(self):
-        self.forward(10)
+        self.forward(self.move_speed)
 
     def x_collision(self):
         # reflect the x axis heading

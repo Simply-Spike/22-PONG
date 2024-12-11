@@ -21,16 +21,16 @@ scoreboard_r = Scoreboard((200,200))
 scoreboard_l = Scoreboard((-200,200))
 ball = Ball()
 
-screen.onkey(key="Up", fun=paddle_r.paddle_up)
-screen.onkey(key="Down", fun=paddle_r.paddle_down)
-screen.onkey(key="w", fun=paddle_l.paddle_up)
-screen.onkey(key="s", fun=paddle_l.paddle_down)
+screen.onkeypress(key="Up", fun=paddle_r.paddle_up)
+screen.onkeypress(key="Down", fun=paddle_r.paddle_down)
+screen.onkeypress(key="w", fun=paddle_l.paddle_up)
+screen.onkeypress(key="s", fun=paddle_l.paddle_down)
 
 
 screen.listen()
 
 while(not game_over):
-    time.sleep(0.1)
+    time.sleep(ball.sleep_speed)
     screen.update()
     ball.move()
     #detect ball collision with top & abottom walls
@@ -52,6 +52,7 @@ while(not game_over):
             game_over = scoreboard_r.is_winner(winning_score)
         # reset the ball
         ball.reset()
+        ball.sleep_speed = 0.09
         # update initial heading
         ball.x_collision()
         

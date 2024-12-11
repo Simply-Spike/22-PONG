@@ -20,9 +20,16 @@ class Paddle(Turtle):
         
     def paddle_hit(self, ball):
         # is ball is inside x coordinates of paddle?
-        if((ball.xcor()>=(self.xcor()-20)) and (ball.xcor()<=(self.xcor()+20))):
+        if((ball.xcor()>=(self.xcor()-10)) and (ball.xcor()<=(self.xcor()+10))):
             #is ball inside y coordinates of paddle?
-            if(ball.ycor()<=(self.ycor()+50) and ball.ycor()>=(self.ycor()-50)):
+            
+            if(ball.ycor()==(self.ycor()+50) or ball.ycor()==(self.ycor()-50)):
+                ball.y_collision()
                 ball.x_collision()
+
+            elif(ball.ycor()<(self.ycor()+50) and ball.ycor()>(self.ycor()-50)):
+                ball.x_collision()
+                #ball.move_speed += 1
+                ball.sleep_speed = ball.sleep_speed*0.9
                 return True
         return False
