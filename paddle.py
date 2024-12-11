@@ -1,4 +1,5 @@
 from turtle import Turtle
+from ball import Ball
 
 class Paddle(Turtle):
     def __init__(self, init_pos, heading =90):
@@ -12,8 +13,16 @@ class Paddle(Turtle):
         
 
     def paddle_up(self):
-        self.forward(20)
+        self.forward(25)
 
     def paddle_down(self):
-        self.backward(20)
+        self.backward(25)
         
+    def paddle_hit(self, ball):
+        # is ball is inside x coordinates of paddle?
+        if((ball.xcor()>=(self.xcor()-20)) and (ball.xcor()<=(self.xcor()+20))):
+            #is ball inside y coordinates of paddle?
+            if(ball.ycor()<=(self.ycor()+50) and ball.ycor()>=(self.ycor()-50)):
+                ball.x_collision()
+                return True
+        return False
